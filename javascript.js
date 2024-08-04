@@ -17,17 +17,13 @@ function getComputerChoice(max) {
     }
 };
 
-//const computerSelection = getComputerChoice(); // Store the result of getComputerChoice
-
 // ------------------------------------------------------------------ //
 
-// let humanChoice;
-
-// // create prompt to get input // 
-// function getHumanChoice() {
-//     let humanChoice = prompt("Heya what do you choose?","");
-//     console.log(`HumanChoice is ${humanChoice}`);
-// }
+// create prompt to get input // 
+function getHumanChoice() {
+    let humanChoice = prompt("Heya what do you choose?","");
+    console.log(`HumanChoice is ${humanChoice}`);
+}
 
 // function playRound(humanChoice,computerSelection) {
 //     humanChoice = humanSelection.toLowerCase();
@@ -80,4 +76,4 @@ function getComputerChoice(max) {
 //------------------------------------------------------------//
 // Call the functions //
 console.log("Computer Choice is",getComputerChoice(3));
-
+getHumanChoice()
