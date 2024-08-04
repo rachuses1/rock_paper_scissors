@@ -2,7 +2,6 @@ function getComputerChoice(max) {
 
     // generate a random number 0 1 and 2
     let computerChoice = Math.floor(Math.random() * max);
-    console.log(computerChoice);
 
     // If the random number is 0, then return "Rock"
     if (computerChoice === 0) {
@@ -16,56 +15,54 @@ function getComputerChoice(max) {
         return "scissors";
     }
 };
+computerChoice = getComputerChoice(3);
 
 // ------------------------------------------------------------------ //
-
 // create prompt to get input // 
-function getHumanChoice() {
-    let humanChoice = prompt("Heya what do you choose?","");
-    console.log(`HumanChoice is ${humanChoice}`);
+let humanChoice = prompt("Heya what do you choose?","");
+console.log(`HumanChoice is ${humanChoice}`);
+
+function playRound(humanChoice,computerChoice) {
+    humanChoice = humanChoice.toLowerCase();
+    // humanChoice winning conditions
+    // humanChoice = paper computerSelection = rock
+    // humanChoice = scissors computerSelection = paper
+    // humanChoice = rock computerSelection = scissors 
+
+    switch(true) {
+        case (humanChoice === "paper" && computerChoice === "rock"):
+            console.log(`You win! ${humanChoice} beats ${computerChoice}`);
+            break;
+        case (humanChoice === "scissors" && computerChoice === "paper"):
+            console.log(`You win! ${humanChoice} beats ${computerChoice}`);
+            break;        
+        case (humanChoice === "rock" && computerChoice === "scissors"):
+            console.log(`You win! ${humanChoice} beats ${computerChoice}`);
+            break;
+        
+    // computer winning conditions
+    // humanChoice = paper computerSelection = scissors
+    // humanChoice = scissors computerSelection = rock
+    // humanChoice = rock computerSelection = paper
+        case (humanChoice === "paper" && computerChoice === "scissors"):
+            console.log(`You lose! ${computerChoice} beats ${humanChoice}`);
+            break;
+        
+        case (humanChoice === "scissors" && computerChoice === "rock"):
+            console.log(`You lose! ${computerChoice} beats ${humanChoice}`);
+            break;
+
+        case (humanChoice === "rock" && computerChoice === "paper"):
+            console.log(`You lose! ${computerChoice} beats ${humanChoice}`);
+            break;
+        
+    // tie conditions
+    // humanChoice = computerSelection
+        case (humanChoice === computerChoice):
+            console.log(`You tie!`);
+            break;
+    }
 }
-
-// function playRound(humanChoice,computerSelection) {
-//     humanChoice = humanSelection.toLowerCase();
-//     // humanChoice winning conditions
-//     // humanChoice = paper computerSelection = rock
-//     // humanChoice = scissors computerSelection = paper
-//     // humanChoice = rock computerSelection = scissors 
-
-//     switch(true) {
-//         case (humanChoice === "paper" && computerSelection === "rock"):
-//             console.log(`You win! ${humanSelection} beats ${computerSelection}`);
-//             break;
-//         case (humanChoice === "scissors" && computerSelection === "paper"):
-//             console.log(`You win! ${humanSelection} beats ${computerSelection}`);
-//             break;        
-//         case (humanChoice === "rock" && computerSelection === "scissors"):
-//             console.log(`You win! ${humanSelection} beats ${computerSelection}`);
-//             break;
-        
-//     // computer winning conditions
-//     // humanChoice = paper computerSelection = scissors
-//     // humanChoice = scissors computerSelection = rock
-//     // humanChoice = rock computerSelection = paper
-//         case (humanChoice === "paper" && computerSelection === "scissors"):
-//             console.log(`You lose! ${computerSelection} beats ${humanSelection}`);
-//             break;
-        
-//         case (humanChoice === "scissors" && computerSelection === "rock"):
-//             console.log(`You lose! ${computerSelection} beats ${humanSelection}`);
-//             break;
-
-//         case (humanChoice === "rock" && computerSelection === "paper"):
-//             console.log(`You lose! ${computerSelection} beats ${humanSelection}`);
-//             break;
-        
-//     // tie conditions
-//     // humanChoice = computerSelection
-//         case (humanChoice === computerSelection):
-//             console.log(`You tie!`);
-//             break;
-//     }
-// }
 
 // // ------------------------------------------------------------//
 // //Score Keeping //
@@ -75,5 +72,7 @@ function getHumanChoice() {
 
 //------------------------------------------------------------//
 // Call the functions //
-console.log("Computer Choice is",getComputerChoice(3));
-getHumanChoice()
+console.log("Computer Choice is",computerChoice);
+console.log(humanChoice, computerChoice);
+
+playRound(humanChoice,computerChoice);
