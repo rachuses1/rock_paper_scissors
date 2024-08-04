@@ -18,6 +18,13 @@ function getComputerChoice(max) {
 computerChoice = getComputerChoice(3);
 
 // ------------------------------------------------------------------ //
+
+//Score Keeping //
+let humanScore = 0;
+let computerScore = 0;
+
+// ------------------------------------------------------------//
+
 // create prompt to get input // 
 let humanChoice = prompt("Heya what do you choose?","");
 console.log(`HumanChoice is ${humanChoice}`);
@@ -32,12 +39,15 @@ function playRound(humanChoice,computerChoice) {
     switch(true) {
         case (humanChoice === "paper" && computerChoice === "rock"):
             console.log(`You win! ${humanChoice} beats ${computerChoice}`);
+            humanScore += 1;
             break;
         case (humanChoice === "scissors" && computerChoice === "paper"):
             console.log(`You win! ${humanChoice} beats ${computerChoice}`);
+            humanScore += 1;
             break;        
         case (humanChoice === "rock" && computerChoice === "scissors"):
             console.log(`You win! ${humanChoice} beats ${computerChoice}`);
+            humanScore += 1;
             break;
         
     // computer winning conditions
@@ -46,14 +56,17 @@ function playRound(humanChoice,computerChoice) {
     // humanChoice = rock computerSelection = paper
         case (humanChoice === "paper" && computerChoice === "scissors"):
             console.log(`You lose! ${computerChoice} beats ${humanChoice}`);
+            computerScore += 1;
             break;
         
         case (humanChoice === "scissors" && computerChoice === "rock"):
             console.log(`You lose! ${computerChoice} beats ${humanChoice}`);
+            computerScore += 1;
             break;
 
         case (humanChoice === "rock" && computerChoice === "paper"):
             console.log(`You lose! ${computerChoice} beats ${humanChoice}`);
+            computerScore += 1;
             break;
         
     // tie conditions
@@ -64,15 +77,10 @@ function playRound(humanChoice,computerChoice) {
     }
 }
 
-// // ------------------------------------------------------------//
-// //Score Keeping //
-// let humanScore = 0;
-// let computerScore = 0;
-
-
 //------------------------------------------------------------//
 // Call the functions //
 console.log("Computer Choice is",computerChoice);
 console.log(humanChoice, computerChoice);
 
 playRound(humanChoice,computerChoice);
+console.log(`Your score is ${humanScore}, Computer ${computerScore}`);
