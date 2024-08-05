@@ -1,41 +1,51 @@
 function getComputerChoice(max) {
-
     // generate a random number 0 1 and 2
     let computerChoice = Math.floor(Math.random() * max);
-
     // If the random number is 0, then return "Rock"
     if (computerChoice === 0) {
         return "rock";}
-
     else if (computerChoice === 1) {
         return "paper";
-    } 
-    
-    else {
+    } else {
         return "scissors";
     }
 };
-computerChoice = getComputerChoice(3);
 
-// ------------------------------------------------------------------ //
+// ------------------------------------------------------------//
+
+
+function getHumanChoice() {
+    let humanChoice = prompt("Heya rock, paper, scissors?","");
+    return humanChoice;
+} 
+
+//const humanSelection = getHumanChoice();
+const computerSelection = getComputerChoice(3);
 
 //Score Keeping //
 let humanScore = 0;
 let computerScore = 0;
 
-// ------------------------------------------------------------//
+let i=0;
+function playGame(humanSelection, computerSelection) {
+if (i<5) {
+    playRound(getHumanChoice(),getComputerChoice(3));
+    i+=1;
+    playGame();
+} else {
+    return "end";
+}
 
-// create prompt to get input // 
-let humanChoice = prompt("Heya what do you choose?","");
-console.log(`HumanChoice is ${humanChoice}`);
+function playRound(humanChoice, computerChoice) {
+// Step 1 - generate computer choice
+console.log("Computer:",computerChoice);
 
-function playRound(humanChoice,computerChoice) {
-    humanChoice = humanChoice.toLowerCase();
-    // humanChoice winning conditions
-    // humanChoice = paper computerSelection = rock
-    // humanChoice = scissors computerSelection = paper
-    // humanChoice = rock computerSelection = scissors 
+// Step 2 - create prompt to get input // 
+//getHumanChoice();
+humanChoice = humanChoice.toLowerCase();
+// Step 3 - determine who will win // 
 
+    // humanChoice winning conditions    
     switch(true) {
         case (humanChoice === "paper" && computerChoice === "rock"):
             console.log(`You win! ${humanChoice} beats ${computerChoice}`);
@@ -51,9 +61,6 @@ function playRound(humanChoice,computerChoice) {
             break;
         
     // computer winning conditions
-    // humanChoice = paper computerSelection = scissors
-    // humanChoice = scissors computerSelection = rock
-    // humanChoice = rock computerSelection = paper
         case (humanChoice === "paper" && computerChoice === "scissors"):
             console.log(`You lose! ${computerChoice} beats ${humanChoice}`);
             computerScore += 1;
@@ -74,13 +81,13 @@ function playRound(humanChoice,computerChoice) {
         case (humanChoice === computerChoice):
             console.log(`You tie!`);
             break;
+        }
+    // announce the result //
+    console.log(`Your score is ${humanScore}, Computer ${computerScore}`);
     }
 }
-
 //------------------------------------------------------------//
-// Call the functions //
-console.log("Computer Choice is",computerChoice);
-console.log(humanChoice, computerChoice);
 
-playRound(humanChoice,computerChoice);
-console.log(`Your score is ${humanScore}, Computer ${computerScore}`);
+playGame();
+
+
