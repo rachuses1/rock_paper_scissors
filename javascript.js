@@ -21,6 +21,8 @@ let playerSelection;
 const rock = document.querySelector('#rock');
 const paper = document.querySelector('#paper');
 const scissors = document.querySelector('#scissors');
+const comment = document.querySelector('#results');
+
 
 const assignRock = () => {
     playerSelection = 'rock';
@@ -43,54 +45,43 @@ scissors.addEventListener("click", assignScissors);
 let humanScore = 0;
 let computerScore = 0;
 
-
-
-
 function playRound(humanChoice, computerChoice) {
-// Step 1 - generate computer choice
-console.log("Computer:",computerChoice);
-
-
-
     // humanChoice winning conditions    
     switch(true) {
         case (humanChoice === "paper" && computerChoice === "rock"):
-            console.log(`You win! ${humanChoice} beats ${computerChoice}`);
+            document.getElementById("results").textContent = `Computer chooses ${computerChoice}. You win! ${humanChoice} beats ${computerChoice}`;
             humanScore += 1;
             break;
         case (humanChoice === "scissors" && computerChoice === "paper"):
-            console.log(`You win! ${humanChoice} beats ${computerChoice}`);
+            document.getElementById("results").textContent = `Computer chooses ${computerChoice}. You win! ${humanChoice} beats ${computerChoice}`;
             humanScore += 1;
             break;        
         case (humanChoice === "rock" && computerChoice === "scissors"):
-            console.log(`You win! ${humanChoice} beats ${computerChoice}`);
+            document.getElementById("results").textContent = `Computer chooses ${computerChoice}. You win! ${humanChoice} beats ${computerChoice}`;
             humanScore += 1;
             break;
         
     // computer winning conditions
         case (humanChoice === "paper" && computerChoice === "scissors"):
-            console.log(`You lose! ${computerChoice} beats ${humanChoice}`);
+            document.getElementById("results").textContent = `Computer chooses ${computerChoice}. You lose! ${computerChoice} beats ${humanChoice}`;
             computerScore += 1;
             break;
         
         case (humanChoice === "scissors" && computerChoice === "rock"):
-            console.log(`You lose! ${computerChoice} beats ${humanChoice}`);
+            document.getElementById("results").textContent = `Computer chooses ${computerChoice}. You lose! ${computerChoice} beats ${humanChoice}`;
             computerScore += 1;
             break;
 
         case (humanChoice === "rock" && computerChoice === "paper"):
-            console.log(`You lose! ${computerChoice} beats ${humanChoice}`);
+            document.getElementById("results").textContent = `Computer chooses ${computerChoice}. You lose! ${computerChoice} beats ${humanChoice}`;
             computerScore += 1;
             break;
         
     // tie conditions
     // humanChoice = computerSelection
         case (humanChoice === computerChoice):
-            console.log(`You tie!`);
+            document.getElementById("results").textContent = `Computer chooses ${computerChoice}. You tie!`;
             break;
 
-        case (humanChoice === 'null'):
-            console.log(`Game cancelled`);
-            break;
     }
 }
