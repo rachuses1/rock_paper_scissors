@@ -11,33 +11,46 @@ function getComputerChoice(max) {
     }
 };
 
-function getHumanChoice() {
-    let humanChoice = prompt("Heya rock, paper, scissors?","");
-    return humanChoice;
-} 
+function playGame(humanSelection, computerSelection) {
+    playRound(playerSelection,getComputerChoice(3));
+}
 
-//const humanSelection = getHumanChoice();
 const computerSelection = getComputerChoice(3);
+let playerSelection;
 
-//Score Keeping //
+const rock = document.querySelector('#rock');
+const paper = document.querySelector('#paper');
+const scissors = document.querySelector('#scissors');
+
+const assignRock = () => {
+    playerSelection = 'rock';
+    playGame();
+};
+const assignPaper = () => {
+    playerSelection = 'paper';
+    playGame();
+};
+
+const assignScissors = () => {
+    playerSelection = 'scissors';
+    playGame();
+};
+
+rock.addEventListener("click", assignRock);
+paper.addEventListener("click", assignPaper);
+scissors.addEventListener("click", assignScissors);
+
 let humanScore = 0;
 let computerScore = 0;
 
 
-function playGame(humanSelection, computerSelection) {
-    playRound(getHumanChoice(),getComputerChoice(3));
-}
+
 
 function playRound(humanChoice, computerChoice) {
 // Step 1 - generate computer choice
 console.log("Computer:",computerChoice);
 
-// Step 2 - create prompt to get input // 
-//getHumanChoice();
 
-    humanChoice = humanChoice.toLowerCase();
-
-// Step 3 - determine who will win // 
 
     // humanChoice winning conditions    
     switch(true) {
@@ -79,16 +92,5 @@ console.log("Computer:",computerChoice);
         case (humanChoice === 'null'):
             console.log(`Game cancelled`);
             break;
-
-        default:
-            console.log(`Not valid`);
-        }
-    // announce the result //
-    console.log(`Your score is ${humanScore}, Computer ${computerScore}`);
+    }
 }
-
-//------------------------------------------------------------//
-
-playGame();
-
-
