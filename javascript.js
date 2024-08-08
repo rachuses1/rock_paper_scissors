@@ -11,9 +11,6 @@ function getComputerChoice(max) {
     }
 };
 
-// ------------------------------------------------------------//
-
-
 function getHumanChoice() {
     let humanChoice = prompt("Heya rock, paper, scissors?","");
     return humanChoice;
@@ -26,14 +23,9 @@ const computerSelection = getComputerChoice(3);
 let humanScore = 0;
 let computerScore = 0;
 
-let i=0;
+
 function playGame(humanSelection, computerSelection) {
-if (i<5) {
     playRound(getHumanChoice(),getComputerChoice(3));
-    i+=1;
-    playGame();
-} else {
-    return "end";
 }
 
 function playRound(humanChoice, computerChoice) {
@@ -42,7 +34,9 @@ console.log("Computer:",computerChoice);
 
 // Step 2 - create prompt to get input // 
 //getHumanChoice();
-humanChoice = humanChoice.toLowerCase();
+
+    humanChoice = humanChoice.toLowerCase();
+
 // Step 3 - determine who will win // 
 
     // humanChoice winning conditions    
@@ -81,11 +75,18 @@ humanChoice = humanChoice.toLowerCase();
         case (humanChoice === computerChoice):
             console.log(`You tie!`);
             break;
+
+        case (humanChoice === 'null'):
+            console.log(`Game cancelled`);
+            break;
+
+        default:
+            console.log(`Not valid`);
         }
     // announce the result //
     console.log(`Your score is ${humanScore}, Computer ${computerScore}`);
-    }
 }
+
 //------------------------------------------------------------//
 
 playGame();
