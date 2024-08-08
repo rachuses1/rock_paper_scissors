@@ -11,9 +11,8 @@ function getComputerChoice(max) {
     }
 };
 
-function playGame(humanSelection, computerSelection) {
-    playRound(playerSelection,getComputerChoice(3));
-}
+
+
 
 const computerSelection = getComputerChoice(3);
 let playerSelection;
@@ -22,7 +21,11 @@ const rock = document.querySelector('#rock');
 const paper = document.querySelector('#paper');
 const scissors = document.querySelector('#scissors');
 const comment = document.querySelector('#results');
+const reset = document.querySelector('#reset');
+const score = document.querySelector('#score');
 
+let humanScore = 0;
+let computerScore = 0;
 
 const assignRock = () => {
     playerSelection = 'rock';
@@ -41,47 +44,90 @@ const assignScissors = () => {
 rock.addEventListener("click", assignRock);
 paper.addEventListener("click", assignPaper);
 scissors.addEventListener("click", assignScissors);
+reset.addEventListener("click",() => {
+    humanScore = 0;
+    computerScore = 0;
+    document.getElementById("results").textContent = '';
+    document.getElementById("score").textContent = `Score is Computer: ${computerScore} Player: ${humanScore}`;
+})
 
-let humanScore = 0;
-let computerScore = 0;
+
 
 function playRound(humanChoice, computerChoice) {
-    // humanChoice winning conditions    
+    // humanChoice winning conditions
+    
+    function humanWins() {
+        if(humanScore === 5) {
+            document.getElementById("results").textContent = `Finito, Human wins!`;
+        }
+    };
+
+    function computerWins() {
+        if (computerScore === 5) {
+            document.getElementById("results").textContent = `Finito, Computer wins!`;
+        }
+    }
+    
     switch(true) {
+        case (humanScore === 5):
+            humanWins();
+            break;
+        case (computerScore === 5):
+            computerWins();
+            break;
+
         case (humanChoice === "paper" && computerChoice === "rock"):
-            document.getElementById("results").textContent = `Computer chooses ${computerChoice}. You win! ${humanChoice} beats ${computerChoice}`;
+            document.getElementById("results").textContent = `Computer chooses ${computerChoice}. 
+            You win! ${humanChoice} beats ${computerChoice}`;
             humanScore += 1;
+            humanWins();
             break;
         case (humanChoice === "scissors" && computerChoice === "paper"):
-            document.getElementById("results").textContent = `Computer chooses ${computerChoice}. You win! ${humanChoice} beats ${computerChoice}`;
+            document.getElementById("results").textContent = `Computer chooses ${computerChoice}. 
+            You win! ${humanChoice} beats ${computerChoice}`;
             humanScore += 1;
+            humanWins();
             break;        
         case (humanChoice === "rock" && computerChoice === "scissors"):
-            document.getElementById("results").textContent = `Computer chooses ${computerChoice}. You win! ${humanChoice} beats ${computerChoice}`;
+            document.getElementById("results").textContent = `Computer chooses ${computerChoice}. 
+            You win! ${humanChoice} beats ${computerChoice}`;
             humanScore += 1;
+            humanWins();
             break;
         
     // computer winning conditions
         case (humanChoice === "paper" && computerChoice === "scissors"):
-            document.getElementById("results").textContent = `Computer chooses ${computerChoice}. You lose! ${computerChoice} beats ${humanChoice}`;
+            document.getElementById("results").textContent = `Computer chooses ${computerChoice}. 
+            You lose! ${computerChoice} beats ${humanChoice}`;
             computerScore += 1;
+            computerWins();
             break;
         
         case (humanChoice === "scissors" && computerChoice === "rock"):
-            document.getElementById("results").textContent = `Computer chooses ${computerChoice}. You lose! ${computerChoice} beats ${humanChoice}`;
+            document.getElementById("results").textContent = `Computer chooses ${computerChoice}. 
+            You lose! ${computerChoice} beats ${humanChoice}`;
             computerScore += 1;
+            computerWins();
             break;
 
         case (humanChoice === "rock" && computerChoice === "paper"):
-            document.getElementById("results").textContent = `Computer chooses ${computerChoice}. You lose! ${computerChoice} beats ${humanChoice}`;
+            document.getElementById("results").textContent = `Computer chooses ${computerChoice}. 
+            You lose! ${computerChoice} beats ${humanChoice}`;
             computerScore += 1;
+            computerWins();
             break;
         
-    // tie conditions
-    // humanChoice = computerSelection
+    // tie conditions: humanChoice = computerSelection
         case (humanChoice === computerChoice):
-            document.getElementById("results").textContent = `Computer chooses ${computerChoice}. You tie!`;
+            document.getElementById("results").textContent = `Computer chooses ${computerChoice}. 
+            You tie!`;
+            computerWins();
             break;
+            
+    } 
+    document.getElementById("score").textContent = `Score is Computer: ${computerScore} Player: ${humanScore}`;
+}
 
-    }
+function playGame(humanSelection, computerSelection) {
+        playRound(playerSelection,getComputerChoice(3));
 }
